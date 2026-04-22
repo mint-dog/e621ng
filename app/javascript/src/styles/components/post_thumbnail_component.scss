@@ -81,11 +81,17 @@ article.thumbnail {
       img {
         width: auto;
         height: unset;
-        object-fit: unset;
+        object-fit: cover;
         max-width: var(--thumb-image-size, 150px);
         max-height: var(--thumb-image-size, 150px);
+        min-width: 100px;
+        min-height: 100px;
       }
     }
+    &.blacklisted a.thm-link::before {
+      font-size: calc(var(--thumb-image-size, 150px) / 10)
+    }
+
     div.thm-desc { display: none; }
   }
 }
