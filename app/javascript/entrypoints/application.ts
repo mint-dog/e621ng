@@ -8,6 +8,7 @@ Rails.start();
 // Common imports for all controllers
 import Autocomplete from "@/components/autocomplete";
 import DTextFormatter from "@/components/DTextFormatter";
+import ThumbnailEngine from "@/components/ThumbnailEngine";
 import "@/core/analytics";
 import "@/core/AuthOverlay";
 import Blacklist from "@/core/blacklists";
@@ -40,6 +41,7 @@ window["E621"] = {
   Blacklist,
   Thumbnails,
   Autocomplete,
+  ThumbnailEngine,
   DTextFormatter,
   PostCache,
   Hotkeys,

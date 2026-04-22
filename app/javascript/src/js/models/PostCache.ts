@@ -62,6 +62,7 @@ export default class PostCache {
 
       md5: data.md5 || "",
       preview_url: data.previewUrl || "",
+      preview_webp: data.previewWebp || "",
       sample_url: data.sampleUrl || "",
       file_url: data.fileUrl || "",
     };
@@ -119,6 +120,7 @@ export default class PostCache {
 
       md5: data.md5 || "",
       preview_url: data.preview_url || "",
+      preview_webp: data.preview_webp || "",
       sample_url: data.sample_url || "",
       file_url: data.file_url || "",
     };
@@ -240,6 +242,7 @@ export class CachedPost implements RawPostData {
 
   public md5?: string;
   public preview_url?: string;
+  public preview_webp?: string;
   public sample_url?: string;
   public file_url?: string;
 
@@ -273,6 +276,7 @@ export class CachedPost implements RawPostData {
 
       "data-md5": this.md5,
       "data-preview-url": this.preview_url,
+      "data-preview-webp": this.preview_webp,
       "data-sample-url": this.sample_url,
       "data-file-url": this.file_url,
     };
@@ -306,6 +310,7 @@ type RawPostData = {
   // Absent from deleted posts
   md5?: string,
   preview_url?: string,
+  preview_webp?: string,
   sample_url?: string,
   file_url?: string,
 };
