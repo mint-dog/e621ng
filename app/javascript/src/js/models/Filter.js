@@ -83,12 +83,23 @@ export default class Filter {
    * @returns {boolean} True if any posts were updated, false otherwise
    */
   updateWithElements ($posts) {
+    // This is a mess.
+    // TODO: Figure out how non-JQ elements are getting passed onto this method.
     if ($posts.length == 0) return false;
-    for (const el of $posts.get()) {
-      const post = PostCache.fromThumbnail($(el));
-      this.updateWithPosts(post);
+    else if (Array.isArray($posts)) {
+      for (const post of $posts) this.updateWithElements($(post));
+      return true;
+    } else if ($posts.length > 1) {
+      for (const el of $posts.get()) {
+        const post = PostCache.fromThumbnail($(el));
+        this.updateWithPosts(post);
+      }
+      return true;
     }
-    return true;
+
+    const post = PostCache.fromThumbnail($posts);
+    if (!post) return false;
+    return this.updateWithPosts(post);
   }
 
   /**
