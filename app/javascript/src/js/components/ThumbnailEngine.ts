@@ -25,6 +25,8 @@ export default class ThumbnailEngine {
       .attr(post.toAttributes());
 
     if (E621.Blacklist.hiddenPosts.has(post.id)) article.addClass("blacklisted");
+    if (E621.Blacklist.matchedPosts.has(post.id)) article.addClass("filter-matches");
+
     if (!showStatistics) article.addClass("no-stats");
     if (!showTypeBadges) article.addClass("no-type-badges");
     if (inline) article.addClass("inline");

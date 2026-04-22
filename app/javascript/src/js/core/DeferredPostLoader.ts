@@ -32,6 +32,7 @@ export default class DeferredPostLoader {
     // visibility on the first try, instead of rendering them and then updating their visibility.
     E621.Blacklist.load_deferred_posts(processed);
     E621.Blacklist.update_visibility();
+    E621.Blacklist.update_styles();
 
     E621.Logger.log("Deferred posts", "\n ⤷ Loaded: " + processed.length, "\n ⤷ In cache: " + PostCache.stats().cachedPosts);
 
