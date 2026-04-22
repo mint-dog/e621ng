@@ -168,6 +168,7 @@ export default class PostCache {
    * @param {($el: JQuery<HTMLElement>) => void} fn Function to apply to the posts
    */
   static apply (postID: number, fn: ($el: JQuery<HTMLElement>) => void) {
+    if (!this._elements[postID]) return;
     for (const one of this._elements[postID])
       fn(one);
   }
@@ -188,7 +189,7 @@ export default class PostCache {
    * @param postID Post ID
    * @returns {CachedPost | null} Cached post data or null if not found
    */
-  static getByID (postID: number): CachedPost | null {
+  static get (postID: number): CachedPost | null {
     if (!this._index.has(postID)) return null;
     return new CachedPost(this._cache[postID]);
   }
@@ -201,7 +202,7 @@ export default class PostCache {
   static getManyByID (postIDs: number[]): { [key: number]: CachedPost } {
     const posts: { [key: number]: CachedPost } = {};
     for (const postID of new Set(postIDs)) {
-      const post = this.getByID(postID);
+      const post = this.get(postID);
       if (post) posts[postID] = post;
     }
     return posts;
@@ -280,6 +281,15 @@ export class CachedPost implements RawPostData {
       "data-sample-url": this.sample_url,
       "data-file-url": this.file_url,
     };
+  }
+
+  public get ratingLong () {
+    switch (this.rating) {
+      case "s": return "safe";
+      case "q": return "questionable";
+      case "e": return "explicit";
+      default: return "unknown";
+    }
   }
 }
 

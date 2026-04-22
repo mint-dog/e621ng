@@ -19,7 +19,8 @@ import "@/core/navigation";
 import "@/core/news_updates";
 import "@/core/paginator";
 import "@/core/themes";
-import Thumbnails from "@/core/thumbnails";
+// import Thumbnails from "@/core/thumbnails";
+import DeferredPostLoader from "@/core/DeferredPostLoader";
 import "@/core/tos_warning";
 import "@/core/user_warning"; // Realistically, should only be on specific pages
 import E621Type from "@/interfaces/E621";
@@ -39,7 +40,8 @@ window["E621"] = {
   LStorage,
   Settings,
   Blacklist,
-  Thumbnails,
+  DeferredPostLoader,
+  // Thumbnails,
   Autocomplete,
   ThumbnailEngine,
   DTextFormatter,

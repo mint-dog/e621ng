@@ -1,5 +1,5 @@
 import E621Type from "@/interfaces/E621";
-import { CachedPost } from "@/models/PostCache";
+import PostCache, { CachedPost } from "@/models/PostCache";
 import Settings from "@/utility/Settings";
 import SVGIcon from "@/utility/SVGIcon";
 
@@ -15,15 +15,20 @@ export default class ThumbnailEngine {
    * @param {CachedPost} post Post data to render
    * @returns {JQuery<HTMLElement> | null} Rendered thumbnail element or null if the post cannot be rendered
    */
-  public static render (post: CachedPost): JQuery<HTMLElement> | null {
+  public static render (post: CachedPost, options: ThumbnailOptions = {}): JQuery<HTMLElement> | null {
     if (!post) return null;
 
+    const { showStatistics = true, showTypeBadges = true, inline = false, native = false } = options;
+
     const article = $("<article>")
-      .addClass("thumbnail")
+      .addClass("thumbnail rating-" + (post.ratingLong))
       .attr(post.toAttributes());
 
-    if (E621.Blacklist.hiddenPosts.has(post.id))
-      article.addClass("blacklisted");
+    if (E621.Blacklist.hiddenPosts.has(post.id)) article.addClass("blacklisted");
+    if (!showStatistics) article.addClass("no-stats");
+    if (!showTypeBadges) article.addClass("no-type-badges");
+    if (inline) article.addClass("inline");
+    if (native) article.addClass("native");
 
     // Core
     $("<a>")
@@ -36,21 +41,24 @@ export default class ThumbnailEngine {
       .append(this.renderPicture(post));
 
     // Footer
-    const footer = $("<div>")
-      .addClass(`thm-desc thm-rating-${post.rating}`)
-      .appendTo(article);
+    if (showStatistics) {
+      const footer = $("<div>")
+        .addClass(`thm-desc thm-rating-${post.rating}`)
+        .appendTo(article);
 
-    $("<span class='thm-desc-a'>")
-      .appendTo(footer)
-      .append(this.renderScore(post.score))
-      .append(this.renderFavorites(post.fav_count))
-      .append(this.renderComments(post.comment_count));
+      $("<span class='thm-desc-a'>")
+        .appendTo(footer)
+        .append(this.renderScore(post.score))
+        .append(this.renderFavorites(post.fav_count))
+        .append(this.renderComments(post.comment_count));
 
-    this.renderRating(post.rating)
-      .appendTo(footer);
+      this.renderRating(post.rating)
+        .appendTo(footer);
+    }
 
     this._counter++;
 
+    PostCache.register(article);
     return article;
   }
 
@@ -115,3 +123,11 @@ export default class ThumbnailEngine {
       .text((rating || "?").toUpperCase());
   }
 }
+
+type ThumbnailOptions = {
+  showStatistics?: boolean;
+  showTypeBadges?: boolean;
+  inline?: boolean;
+  native?: boolean;
+};
+
