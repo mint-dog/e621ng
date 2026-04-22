@@ -65,6 +65,9 @@ export default class DeferredPostLoader {
       if (!thumbnail) continue;
       $placeholder.replaceWith(thumbnail);
     }
+
+    // Any placeholders left cannot be rendered
+    $(".thumb-placeholder-link").removeClass("thumb-placeholder-link");
   }
 
   public static renderUserAvatars () {
@@ -79,6 +82,9 @@ export default class DeferredPostLoader {
       if (!thumbnail) continue;
       $placeholder.replaceWith(thumbnail);
     }
+
+    // Any placeholders left cannot be rendered
+    $(".post-thumb.placeholder").removeClass(".placeholder");
   }
 }
 
