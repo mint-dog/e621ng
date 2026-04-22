@@ -85,7 +85,7 @@ export default class DeferredPostLoader {
     }
 
     // Any placeholders left cannot be rendered
-    $(".post-thumb.placeholder").removeClass(".placeholder");
+    $(".post-thumb.placeholder").removeClass("placeholder");
   }
 }
 
