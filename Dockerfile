@@ -34,7 +34,7 @@ COPY --from=node-builder /usr/local/lib /usr/local/lib
 COPY --from=node-builder /usr/local/include /usr/local/include
 COPY --from=node-builder /usr/local/bin /usr/local/bin
 
-ARG INSTALL_CRON=false
+ARG INSTALL_CRON=true
 
 # Install runtime packages (after copying node files so packaging doesn't get overwritten)
 RUN apt-get update && apt-get install -y --no-install-recommends \

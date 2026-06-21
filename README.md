@@ -121,19 +121,24 @@ Try this:
 
 #### Local development vs production builds
 
-This repository now supports two build modes:
+This repository supports two build modes:
 
-- Local dev mode: development gems are included so debugging and breakpoints work.
-  - Use `docker compose build --no-cache e621`.
-- Production mode: development gems are excluded and cron is installed so runtime behavior matches production.
-  - Use `docker build --no-cache --build-arg INCLUDE_DEV=false --build-arg INSTALL_CRON=true -t e621:prod .`
+- **Production (default)**: excludes development gems and includes system cron for scheduled maintenance.
+  - Use `docker build -t e621:latest .` (or any CI build without overrides).
+  - Build args default to `INCLUDE_DEV=false` and `INSTALL_CRON=true`.
 
-You can also run the provided Makefile targets:
+- **Local dev**: includes development gems for debugging/breakpoints, optionally includes cron.
+  - Use `docker compose build --no-cache e621` (or `make build-dev`).
+  - Compose explicitly passes `INCLUDE_DEV=true`; cron is included by default (set `INSTALL_CRON=false` in compose if you prefer to exclude it).
+
+Makefile targets:
 
 ```shell
-make build-dev
-make build-prod
+make build-dev   # Local dev build (dev gems, cron included by default)
+make build-prod  # Explicit prod build (no dev gems, cron included)
 ```
+
+The `docker-entrypoint.sh` automatically switches to `Procfile.prod` (with cron process) if the `crond` binary is detected or `ENABLE_CRON=true` is set.
 
 #### <a id="windows-executable-bit"></a>Why are there a bunch of changes I can't revert?
 

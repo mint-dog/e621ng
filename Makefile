@@ -2,9 +2,12 @@ DOCKER_IMAGE ?= e621
 
 .PHONY: build-dev build-prod
 
+# Build dev image with development gems (debugging/breakpoints enabled)
 build-dev:
 	docker compose build --no-cache e621
 
+# Build production image (default: no dev gems, cron included)
+# These args are already the Dockerfile defaults, shown here for clarity
 build-prod:
 	docker build --no-cache \
 	  --build-arg INCLUDE_DEV=false \
