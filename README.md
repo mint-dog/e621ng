@@ -86,6 +86,31 @@ It is recommended to set `LOCAL_DTEXT` to `false` whenever you are not actively 
 
 This repo provides a Dev Container configuration. You can use something like the [Dev Container extension for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) to make use of it. Simply install it, open the folder in VSCode, and click the button in the bottom right to open the folder in the Dev Container.
 
+### Debugging in VS Code
+
+1. Install a Ruby debugger extension:
+   - `wingrunr21.ruby`
+   - `rebornix.ruby`
+
+   The Ruby language server extension does not provide the `Ruby` debug adapter.
+2. Open the Run and Debug view:
+   - Click the `Run and Debug` icon in the Activity Bar on the left,
+   - or press `Ctrl+Shift+D` on Linux/Windows, `Cmd+Shift+D` on Mac.
+3. Select a configuration from the dropdown at the top of the Run view:
+   - `Rails: Launch server (ruby-debug-ide)` to start Rails under the Ruby debugger,
+   - `Rails: Attach to ruby-debug-ide` to attach to a Rails process already started with `ruby-debug-ide`,
+   - `Chrome: Attach to Rails (client)` to debug browser-side JavaScript in Chrome.
+3. Click the green Start button to run the selected configuration.
+
+If you prefer a task instead of the Run view:
+
+1. Open the Command Palette with `Ctrl+Shift+P` / `Cmd+Shift+P`.
+2. Run `Tasks: Run Task`.
+3. Choose `e621: debug rails server` to start Rails with `ruby-debug-ide` listening on port `12345`.
+4. Then use `Rails: Attach to ruby-debug-ide` in the Run view to attach VS Code to that process.
+
+For debugging RSpec, use `Tasks: Run Task` and choose `e621: debug rspec file`, then attach to `Rails: Attach to ruby-debug-ide`.
+
 #### <a id="docker-troubleshooting"></a>I followed the above instructions but it doesn't work, what should I do?
 
 Try this:

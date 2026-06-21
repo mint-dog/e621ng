@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Rails: Launch server (ruby-debug-ide)",
+      "type": "Ruby",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/rails",
+      "args": ["server"],
+      "useBundler": true,
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Rails: Attach to ruby-debug-ide",
+      "type": "Ruby",
+      "request": "attach",
+      "remoteHost": "127.0.0.1",
+      "remotePort": 12345,
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Chrome: Attach to Rails (client)",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/app/javascript"
+    }
+  ]
+}

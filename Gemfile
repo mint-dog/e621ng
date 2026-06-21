@@ -78,6 +78,8 @@ end
 
 group :development do
   gem "debug", require: false
+  gem "ruby-debug-ide", require: false
+  gem "debase", require: false
   gem "rubocop", require: false
   gem "rubocop-erb", require: false
   gem "rubocop-rails", require: false

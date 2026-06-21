@@ -79,6 +79,11 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
   config.action_controller.allow_forgery_protection = ENV.fetch("DISABLE_CSRF_PROTECTION", "true") == "true"
 
   config.hosts << "e621ng.local"
+  config.hosts << "localhost"
+  config.hosts << "localhost:3000"
+  config.hosts << "127.0.0.1"
+  config.hosts << "127.0.0.1:3000"
+  config.hosts << "host.docker.internal"
 
   # Allow access from GitHub Codespaces, if applicable
   if ENV["CODESPACES"].present? && ENV.fetch("CODESPACES", "false") == "true"

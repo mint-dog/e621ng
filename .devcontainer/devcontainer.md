@@ -9,6 +9,12 @@ You may also want to run `bin/populate` to populate the database.
 ### Service failures
 **`bin/setup` postgres duplicates**: If you don't want to rebuild, try running: `rails db:drop` and `rails db:prepare`
 **`Procfile does not exist.`**: You may have run a `docker compose` command inside of the container. Run `apk del docker-cli-compose`, and then start the service manually. If this still doesn't work, you may need to rebuild (or even fully delete) the container.
+### Debugging from VS Code
+- Use the Run panel and select `Rails: Launch server (ruby-debug-ide)` or start the task `e621: debug rails server`.
+- If you start the task, then attach with `Rails: Attach to ruby-debug-ide`.
+- For JS debugging, use `Chrome: Attach to Rails (client)` and open `http://localhost:3000`.
+- Make sure breakpoints are set in `app/controllers`, `app/models`, or `app/javascript` as appropriate.
+
 ### Docker issues
 **Docker commands not working**: Try manually running `apk add bash-completion docker-cli`. It is possible they failed to run on container setup.
 **Docker Compose not working**: Docker compose is not available in the container. `docker-cli-compose` causes the e621 service to be unable to find the `Procfile`.

@@ -121,6 +121,9 @@ GEM
       msgpack
     datadog-ruby_core_source (3.4.0)
     date (3.5.0)
+    debase (0.2.9)
+      debase-ruby_core_source (>= 3.4.1)
+    debase-ruby_core_source (4.0.1)
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
@@ -375,6 +378,8 @@ GEM
     rubocop-rspec_rails (2.30.0)
       rubocop (~> 1.61)
       rubocop-rspec (~> 3, >= 3.0.1)
+    ruby-debug-ide (0.7.5)
+      rake (>= 0.8.1)
     ruby-lsp (0.26.9)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
@@ -462,6 +467,7 @@ DEPENDENCIES
   bootsnap
   dalli
   datadog
+  debase
   debug
   diffy
   dotenv
@@ -497,6 +503,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
+  ruby-debug-ide
   ruby-lsp
   ruby-lsp-rails (~> 0.4.8)
   ruby-lsp-rspec

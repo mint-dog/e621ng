@@ -39,7 +39,9 @@
         "dbaeumer.vscode-eslint",
 
         /** Ruby / Rails **/
-        "Shopify.ruby-lsp"
+        "Shopify.ruby-lsp",
+        "rebornix.ruby",
+        "wingrunr21.ruby"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
@@ -48,6 +50,7 @@
     }
   },
 
+  "forwardPorts": [12345],
   "portsAttributes": {
     "8000": {
       "onAutoForward": "ignore"

@@ -93,6 +93,24 @@
       "group": "none"
     },
     {
+      "label": "e621: debug rails server",
+      "type": "shell",
+      "command": ".vscode/run-in-container.sh e621 bundle exec rdebug-ide --host 127.0.0.1 --port 12345 -- bin/rails server -p 3000",
+      "isBackground": true,
+      "problemMatcher": [],
+      "detail": "Start Rails with ruby-debug-ide listening for debugger attach",
+      "group": "none"
+    },
+    {
+      "label": "e621: debug rspec file",
+      "type": "shell",
+      "command": ".vscode/run-in-container.sh tests bundle exec rdebug-ide --host 127.0.0.1 --port 12345 -- bundle exec rspec ${input:debug_rspec_file}",
+      "isBackground": true,
+      "problemMatcher": [],
+      "detail": "Run a single spec with ruby-debug-ide listening for debugger attach",
+      "group": "none"
+    },
+    {
       "label": "e621: dev_make_staff",
       "type": "shell",
       "command": ".vscode/run-in-container.sh e621 /app/bin/rails runner 'User.find(${input:user_id}).update(is_bd_staff: true)'",
@@ -116,6 +134,12 @@
       "default": "test/",
       "type": "promptString",
       "description": "Enter the test file name (eg, test/unit/model.rb)"
+    },
+    {
+      "id": "debug_rspec_file",
+      "default": "spec/path/to/file_spec.rb",
+      "type": "promptString",
+      "description": "Enter the spec path to debug (eg, spec/models/user_spec.rb:42)"
     },
     {
       "id": "user_id",
