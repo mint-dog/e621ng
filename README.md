@@ -119,6 +119,22 @@ Try this:
 1. `docker compose build --no-cache` to rebuild the image from scratch.
 1. Follow the [instructions](#installation) starting from step 5.
 
+#### Local development vs production builds
+
+This repository now supports two build modes:
+
+- Local dev mode: development gems are included so debugging and breakpoints work.
+  - Use `docker compose build --no-cache e621`.
+- Production mode: development gems are excluded and cron is installed so runtime behavior matches production.
+  - Use `docker build --no-cache --build-arg INCLUDE_DEV=false --build-arg INSTALL_CRON=true -t e621:prod .`
+
+You can also run the provided Makefile targets:
+
+```shell
+make build-dev
+make build-prod
+```
+
 #### <a id="windows-executable-bit"></a>Why are there a bunch of changes I can't revert?
 
 You're most likely using Windows. Give this a shot, it tells Git to stop tracking file mode changes:

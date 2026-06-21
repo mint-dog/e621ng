@@ -60,9 +60,10 @@ group :production do
   gem "pitchfork"
 end
 
+gem "puma"
+
 group :development, :test do
   gem "listen"
-  gem "puma"
 
   # Testing suite
   gem "rspec-rails", "~> 8.0.0", require: false

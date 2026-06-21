@@ -6,5 +6,7 @@
 !/package-lock.json
 !/Gemfile
 !/Gemfile.lock
+!/Procfile
+!/Procfile.prod
 !/vendor/
 !/docker-entrypoint.sh
