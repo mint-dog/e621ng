@@ -17,7 +17,7 @@ if [ -d "vendor/dtext" ] && [ "$LOCAL_DTEXT" = "true" ]; then
   echo "dtext: Recompiled successfully"
 fi
 
-if command -v crond >/dev/null 2>&1 || [ "$ENABLE_CRON" = "true" ]; then
+if command -v crond >/dev/null 2>&1 || command -v cron >/dev/null 2>&1 || [ "$ENABLE_CRON" = "true" ]; then
   if [ -f /app/Procfile.prod ]; then
     cp /app/Procfile.prod /app/Procfile
   fi
